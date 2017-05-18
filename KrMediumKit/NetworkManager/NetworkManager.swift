@@ -8,9 +8,9 @@
 
 import Foundation
 
-class NetworkManager {
+open class NetworkManager {
     
-    func testLog() {
+    public func testLog() {
         print("networkManager testLog")
     }
     
