@@ -1,0 +1,6 @@
+framework module KrMediumKit {
+  umbrella header "KrMediumKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
