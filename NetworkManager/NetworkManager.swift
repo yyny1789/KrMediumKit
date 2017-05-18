@@ -10,7 +10,7 @@ import Foundation
 
 open class NetworkManager {
     
-    public func testLog() {
+    public class func testLog() {
         print("networkManager testLog")
     }
     
