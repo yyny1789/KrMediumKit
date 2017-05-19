@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Extensions' do |ss|
       ss.source_files = "Source/Utils/Extensions/"
+      ss.dependency "Source/Utils/"
   end
   #s.dependency "Moya", "~> 8.0.0"
   #s.dependency "ObjectMapper", "~> 2.0.0"
