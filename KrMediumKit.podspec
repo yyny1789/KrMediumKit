@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "KrMediumKit"
-  s.version      = "0.1.1"
+  s.version      = "0.1.2"
   s.summary      = "Basic components of 36kr Medium"
   s.license      = { :type => "MIT", :file => "License.md" }
   s.author             = { "yangyang" => "yangyang02@36kr.com" }
@@ -10,14 +10,14 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/yyny1789/KrMediumKit.git", :tag => s.version }
   s.platform     = :ios
   s.ios.deployment_target = "9.0"
-  s.frameworks       = 'UIKit'
+  s.frameworks   = 'UIKit'
 
-  s.source_files = "Source/Utils/"
+  s.default_subspec = "Core"
 
-  s.subspec 'Extensions' do |ss|
-      ss.source_files = "Source/Utils/Extensions/"
-      ss.dependency "Source/Utils/"
+  s.subspec 'Core' do |ss|
+      ss.source_files = "Source/Utils/", "Source/Utils/Extensions/"
   end
+
   #s.dependency "Moya", "~> 8.0.0"
   #s.dependency "ObjectMapper", "~> 2.0.0"
   #s.dependency "ReachabilitySwift", "~> 3.0.0"
