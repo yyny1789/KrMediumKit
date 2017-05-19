@@ -10,7 +10,6 @@ import Foundation
 import Moya
 import ObjectMapper
 import ReachabilitySwift
-import Device
 import AdSupport
 
 public final class NetworkManager {
