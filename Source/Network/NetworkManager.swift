@@ -33,6 +33,57 @@ public final class NetworkManager {
         return Reachability()
     }()
     
+    public func requestCacheAPI<T: TargetType, O: Mappable>(
+        _ target: T,
+        ignoreCache: Bool = true,
+        loadCacheFirstWhenIgnoreCache: Bool = true,
+        stub: Bool = false,
+        log: Bool = true,
+        success: @escaping (_ result: O, _ dataFromCache: Bool) -> Void,
+        failure: @escaping (_ error: MoyaError) -> Void)
+        -> Cancellable? {
+            let url = target.baseURL.appendingPathComponent(target.path).absoluteString
+            if ignoreCache {
+                if loadCacheFirstWhenIgnoreCache {
+                    if let cache = DatabaseManager.manager.objectWithPrimaryKey(NetworkCacheEntity.self, primaryKey: url as AnyObject)?.cacheData {
+                        if let JSONString = NSString(data: cache, encoding: String.Encoding.utf8.rawValue),
+                            let result = Mapper<O>().map(JSONObject: JSONString) {
+                            success(result, true)
+                        }
+                    }
+                }
+                return request(target, stub: stub, log: log, success: { (result: O) in
+                    DatabaseManager.manager.saveObjects({ () -> [NetworkCacheEntity] in
+                        let cache = NetworkCacheEntity()
+                        cache.cacheName = url
+                        cache.cacheData = result.toJSONString()?.data(using: String.Encoding.utf8)
+                        return [cache]
+                    })
+                    success(result, false)
+                }, failure: failure)
+            } else {
+                if let cache = DatabaseManager.manager.objectWithPrimaryKey(NetworkCacheEntity.self, primaryKey: url as AnyObject)?.cacheData {
+                    if let JSONString = NSString(data: cache, encoding: String.Encoding.utf8.rawValue),
+                        let result = Mapper<O>().map(JSONObject: JSONString) {
+                        success(result, true)
+                    } else {
+                        failure(MoyaError.underlying(NSError(domain: "NetworkManager", code: 1, userInfo: [NSLocalizedDescriptionKey : "缓存的JSON字符串Map至对象失败"])))
+                    }
+                    return nil
+                } else {
+                    return request(target, stub: stub, log: log, success: { (result: O) in
+                        DatabaseManager.manager.saveObjects({ () -> [NetworkCacheEntity] in
+                            let cache = NetworkCacheEntity()
+                            cache.cacheName = url
+                            cache.cacheData = result.toJSONString()?.data(using: String.Encoding.utf8)
+                            return [cache]
+                        })
+                        success(result, false)
+                    }, failure: failure)
+                }
+            }
+    }
+    
     public func request<T: TargetType, O: Mappable>(_ target: T, stub: Bool = false, log: Bool = true, success: @escaping (_ result: O) -> Void, failure: @escaping (_ error: MoyaError) -> Void) -> Cancellable? {
         var provider: MoyaProvider<T>
         if NetworkManagerSettings.consolelogEnable && log {
