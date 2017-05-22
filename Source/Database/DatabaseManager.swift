@@ -9,9 +9,9 @@
 import Foundation
 import RealmSwift
 
-class DatabaseManager {
+public final class DatabaseManager {
     
-    class var manager: DatabaseManager {
+    public class var manager: DatabaseManager {
         
         struct SingletonWrapper {
             static let singleton = DatabaseManager()
@@ -47,7 +47,7 @@ class DatabaseManager {
         Realm.Configuration.defaultConfiguration = config
     }
     
-    func saveObjects<T: Object>(_ objects: @escaping () -> [T], completion: (() -> Void)? = nil) {
+    public func saveObjects<T: Object>(_ objects: @escaping () -> [T], completion: (() -> Void)? = nil) {
         writeOperationQueue.addOperation {
             autoreleasepool {
                 do {
@@ -68,7 +68,7 @@ class DatabaseManager {
     }
     
     //注意，要从Realm中删除的Object必须是从Realm中读出来的,并且在同一线程读出并删除，如果是内存中New的，删除会抛异常
-    func deleteObjects<T : Object>(_ retrieveObjects: @escaping () -> Results<T>, completion: (() -> Void)? = nil) {
+    public func deleteObjects<T : Object>(_ retrieveObjects: @escaping () -> Results<T>, completion: (() -> Void)? = nil) {
         writeOperationQueue.addOperation {
             autoreleasepool {
                 do {
@@ -89,7 +89,7 @@ class DatabaseManager {
         }
     }
     
-    func retrieveObjects<T : Object>(_ objectType: T.Type, filter: NSPredicate? = nil) -> Results<T> {
+    public func retrieveObjects<T : Object>(_ objectType: T.Type, filter: NSPredicate? = nil) -> Results<T> {
         let realm = try! Realm()
         if let filter = filter {
             return realm.objects(objectType).filter(filter)
@@ -98,7 +98,7 @@ class DatabaseManager {
         }
     }
     
-    func objectWithPrimaryKey<T: Object>(_ type: T.Type, primaryKey: AnyObject) -> T? {
+    public func objectWithPrimaryKey<T: Object>(_ type: T.Type, primaryKey: AnyObject) -> T? {
         do {
             let realm = try Realm()
             return realm.object(ofType: type, forPrimaryKey: primaryKey)
