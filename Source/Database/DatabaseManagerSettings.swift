@@ -12,5 +12,4 @@ public struct DatabaseManagerSettings {
 
     public static var databasePath: String?
     
-
 }

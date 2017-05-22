@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "KrMediumKit"
-  s.version      = "0.1.6"
+  s.version      = "0.1.7"
   s.summary      = "Basic components of 36kr Medium"
   s.license      = { :type => "MIT", :file => "License.md" }
   s.author             = { "yangyang" => "yangyang02@36kr.com" }
@@ -27,6 +27,17 @@ Pod::Spec.new do |s|
       ss.dependency "Moya/RxSwift", "~> 8.0.0"
       ss.dependency "ObjectMapper", "~> 2.0.0"
       ss.dependency "ReachabilitySwift", "~> 3.0.0"
+  end
+
+  s.subspec 'UI' do |ss|
+      ss.source_files = "Source/UI/"
+      ss.dependency "KrMediumKit/Core"
+
+      ss.subspec 'PullToRefresh' do |sss|
+      sss.source_files = "Source/UI/PullToRefresh"
+      sss.dependency "KrMediumKit/Core"
+      end
+      
   end
 
 end
