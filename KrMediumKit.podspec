@@ -30,14 +30,12 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'UI' do |ss|
-      ss.source_files = "Source/UI/"
-      ss.dependency "KrMediumKit/Core"
 
       ss.subspec 'PullToRefresh' do |sss|
       sss.source_files = "Source/UI/PullToRefresh"
       sss.dependency "KrMediumKit/Core"
       end
-      
+
   end
 
 end
