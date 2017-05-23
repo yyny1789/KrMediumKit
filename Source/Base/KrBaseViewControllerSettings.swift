@@ -24,7 +24,7 @@ public struct KrBaseViewControllerSettings {
     
     public static var settingsconfigure: KrBaseViewControllerSettingsProtocol?
     
-    static public func baseViewControllerViewDidLoad(viewController: UIViewController) {
+    static func baseViewControllerViewDidLoad(viewController: UIViewController) {
         settingsconfigure?.baseViewControllerViewDidLoad(viewController: viewController)
     }
     

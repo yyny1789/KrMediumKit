@@ -61,7 +61,7 @@ public class LoadingView: UIView {
         addSubview(label)
     }
     
-    var loadingState: LoadingState = .initial {
+    public var loadingState: LoadingState = .initial {
         didSet {
             switch loadingState {
             case .loading:

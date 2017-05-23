@@ -175,15 +175,15 @@ open class KrBaseViewController: UIViewController {
         }
     }
     
-    override open var preferredStatusBarStyle : UIStatusBarStyle {
+    override open var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
     
-    override open var prefersStatusBarHidden : Bool {
+    override open var prefersStatusBarHidden: Bool {
         return false
     }
     
-    override open var preferredStatusBarUpdateAnimation : UIStatusBarAnimation {
+    override open var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .fade
     }
         
@@ -193,6 +193,7 @@ open class KrBaseViewController: UIViewController {
     
 }
 
+/*
 extension KrBaseViewController {
     
     public func requestArray<T: TargetType, O: Mappable>(_ target: T, stub: Bool = false, log: Bool = false, success: @escaping (_ result: ArrayResponse<O>) -> Void, failure: @escaping (_ error: MoyaError) -> Void) {
@@ -212,3 +213,4 @@ extension KrBaseViewController {
     }
     
 }
+*/

@@ -10,7 +10,7 @@ import UIKit
 import Moya
 import ObjectMapper
 
-private var BaseTableViewControllerContext = 0
+fileprivate var BaseTableViewControllerContext = 0
 
 open class KrBaseTableViewController: KrBaseViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -138,7 +138,7 @@ extension KrBaseTableViewController {
     }
     
 }
-
+/*
 extension KrBaseTableViewController {
     
     public func requestList<T: TargetType, O: Mappable>(_ target: T, stub: Bool = false, log: Bool = false, success: @escaping (_ result: ListResponse<O>) -> Void, failure: @escaping (_ error: MoyaError) -> Void) {
@@ -162,4 +162,4 @@ extension KrBaseTableViewController {
     }
     
 }
-
+*/
