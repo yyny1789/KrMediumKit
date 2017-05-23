@@ -12,7 +12,7 @@ import ObjectMapper
 
 fileprivate var BaseTableViewControllerContext = 0
 
-public class KrBaseTableViewController: KrBaseViewController, UITableViewDelegate, UITableViewDataSource {
+open class KrBaseTableViewController: KrBaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     open var tableView: UITableView!
     
@@ -123,10 +123,6 @@ public class KrBaseTableViewController: KrBaseViewController, UITableViewDelegat
         self.tableView.refresher?.startRefreshing()
     }
     
-}
-
-extension KrBaseTableViewController {
-    
     // MARK: UITableViewDataSource
     
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -136,10 +132,6 @@ extension KrBaseTableViewController {
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
-    
-}
-
-extension KrBaseTableViewController {
     
     public func requestList<T: TargetType, O: Mappable>(_ target: T, stub: Bool = false, log: Bool = false, success: @escaping (_ result: ListResponse<O>) -> Void, failure: @escaping (_ error: MoyaError) -> Void) {
         
@@ -162,4 +154,5 @@ extension KrBaseTableViewController {
     }
     
 }
+
 
