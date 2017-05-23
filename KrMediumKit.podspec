@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "KrMediumKit"
-  s.version      = "0.1.9"
+  s.version      = "0.1.10"
   s.summary      = "Basic components of 36kr Medium"
   s.license      = { :type => "MIT", :file => "License.md" }
   s.author             = { "yangyang" => "yangyang02@36kr.com" }
@@ -41,6 +41,7 @@ Pod::Spec.new do |s|
   s.subspec 'Base' do |ss|
       ss.source_files = "Source/Base/"
       ss.dependency "KrMediumKit/UI"
+      ss.dependency "KrMediumKit/Network"
   end
 
 end
