@@ -34,7 +34,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-open class KrBaseViewController: UIViewController {
+public class KrBaseViewController: UIViewController {
     
     //子类重写提供空页面图片
     open var emptyImage: UIImage? {
@@ -193,7 +193,6 @@ open class KrBaseViewController: UIViewController {
     
 }
 
-/*
 extension KrBaseViewController {
     
     public func requestArray<T: TargetType, O: Mappable>(_ target: T, stub: Bool = false, log: Bool = false, success: @escaping (_ result: ArrayResponse<O>) -> Void, failure: @escaping (_ error: MoyaError) -> Void) {
@@ -213,4 +212,4 @@ extension KrBaseViewController {
     }
     
 }
-*/
+
